@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="pegarDados(url)">pegar dados</button>
+    <button onclick="deletarDados(1)">deletar dados</button>
+    <div id="dados"></div>
+</body>
+<script>
+    let url = 'http://localhost:3000/produtos/'
+    function pegarDados(url){
+        const elemento = document.querySelector("#dados")
+   fetch(url, { method: 'GET' })
+    .then(response => response.text())
+    .then(texto => {
+        elemento.innerHTML = texto
+    })
+    .catch(err => console.log(err.message))
+
+
+}
+
+function deletarDados( num){
+    let urlModificada =  `http://localhost:3000/produtos/${num}`
+        const elemento = document.querySelector("#dados")
+   fetch(urlModificada, { method: 'DELETE' })
+    .then(response => response.text())
+    .then(texto => {
+        elemento.innerHTML = texto
+    })
+    .catch(err => console.log(err.message))
+
+
+}
+</script> 
+</html>
